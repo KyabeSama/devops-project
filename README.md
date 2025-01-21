@@ -12,7 +12,7 @@ The objective is to use Terraform, Ansible, AWS and Github actions to deploy an 
 * Set up cluster networking with AWS CNI
 * Create namespaces for different environments
 
-1. CI/CD Pipeline for Containerized Applications
+2. CI/CD Pipeline for Containerized Applications
 
 * Create GitHub Actions workflows to:
     Build and push Docker images to ECR
@@ -23,7 +23,7 @@ The objective is to use Terraform, Ansible, AWS and Github actions to deploy an 
 
 * Implement GitOps practices using tools like ArgoCD or Flux
 
-1. Kubernetes Application Platform
+3. Kubernetes Application Platform
 
 * Deploy common platform services:
     Ingress controller (nginx/traefik)
@@ -35,7 +35,7 @@ The objective is to use Terraform, Ansible, AWS and Github actions to deploy an 
 * Set up pod disruption budgets
 * Configure resource quotas and limits
 
-1. Hybrid Infrastructure Management
+4. Hybrid Infrastructure Management
 
 * Use Ansible to configure worker nodes
 * Create playbooks for node maintenance
@@ -44,7 +44,7 @@ The objective is to use Terraform, Ansible, AWS and Github actions to deploy an 
 * Configure AWS IAM roles for service accounts
 * Implement cross-account access patterns
 
-1. Microservices Application Stack
+5. Microservices Application Stack
 
 * Deploy a sample microservices application using:
     API Gateway/ALB Ingress Controller
@@ -56,7 +56,7 @@ The objective is to use Terraform, Ansible, AWS and Github actions to deploy an 
 Implement service discovery
 Set up blue-green deployments
 
-1. Multi-Region Disaster Recovery
+6. Multi-Region Disaster Recovery
 
 * Create multi-region EKS clusters
 * Implement cross-region data replication
@@ -65,7 +65,7 @@ Set up blue-green deployments
 * Implement cluster federation if needed
 * Design failover procedures
 
-1. Security and Compliance Infrastructure
+7. Security and Compliance Infrastructure
 
 * Implement pod security policies
 * Set up network policies
