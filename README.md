@@ -1,7 +1,7 @@
 # CCL Devops Demonstration Project
 
-This project is a demo project which demonstrate the technologic capabilities of its creators.
-The objective is to use Terraform, Ansible, AWS and Github actions to deploy an infrastucture.
+This project is a demo project which demonstrate the technologic skills of its creators.
+The objective is to use Terraform, Ansible, AWS, Kubernetes and Github actions to deploy an infrastucture.
 
 1. Infrastructure and Kubernetes Cluster Setup
 
@@ -9,10 +9,8 @@ The objective is to use Terraform, Ansible, AWS and Github actions to deploy an 
 * Set up a multi-AZ VPC architecture for high availability
 * Configure node groups with auto-scaling capabilities
 * Implement AWS Load Balancer Controller
-* Set up cluster networking with AWS CNI
-* Create namespaces for different environments
 
-2. CI/CD Pipeline for Containerized Applications
+1. CI/CD Pipeline for Containerized Applications
 
 * Create GitHub Actions workflows to:
     Build and push Docker images to ECR
