@@ -70,6 +70,7 @@ class Database:
         for row in rows:
             print(row)
 
+
     def close_connection(self):
         if self.connection.is_connected():
             self.connection.close()

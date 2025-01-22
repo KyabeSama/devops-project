@@ -17,7 +17,7 @@ def movie_list():
     )
     movies = db.read_movies()
     db.close_connection()
-    return render_template('movies.html', movies=movies)
+    return render_template('movies_list.html', movies=movies)
 
 if __name__ == "__main__":
     app.run(debug=True)

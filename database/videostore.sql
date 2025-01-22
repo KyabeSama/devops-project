@@ -1,5 +1,3 @@
-CREATE DATABASE videostore;
-
 USE videostore;
 
 CREATE TABLE Country (
@@ -19,7 +17,7 @@ CREATE TABLE Actors (
     name VARCHAR(255) NOT NULL,
     surname VARCHAR(255) NOT NULL,
     country_id INT,
-    birthday TIMESTAMP,
+    birthday DATETIME,
     FOREIGN KEY (country_id) REFERENCES Country(id)
 );
 
@@ -27,7 +25,7 @@ CREATE TABLE Authors (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     country_id INT,
-    birthday TIMESTAMP,
+    birthday DATETIME,
     FOREIGN KEY (country_id) REFERENCES Country(id)
 );
 
