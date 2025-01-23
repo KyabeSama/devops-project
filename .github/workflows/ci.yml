@@ -9,6 +9,8 @@ on:
       - main
 env:
   REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
 
 jobs:
   build:
