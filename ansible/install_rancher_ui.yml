@@ -1,0 +1,29 @@
+- name: Install Rancher UI
+  hosts: localhost
+  vars:
+    rancher_namespace: "cattle-system"
+    rancher_hostname: "rancher.my.org"
+    rancher_replicas: 1
+    rancher_tls_source: "letsEncrypt"
+    add_repo_helm_repo_name: "rancher-latest"
+    add_repo_helm_repo_url: "https://releases.rancher.com/server-charts/latest"
+  tasks:
+    - name: Create cattle-system namespace
+      include_role:
+        name: create_namespace
+      vars:
+        namespace_name: "{{ rancher_namespace }}"
+
+    - name: Add Rancher Helm repository
+      include_role:
+        name: add_repo
+      vars:
+        helm_repo_name: "{{ add_repo_helm_repo_name }}"
+        helm_repo_url: "{{ add_repo_helm_repo_url }}"
+
+    - name: Update Helm repositories
+      include_role:
+        name: update_repo
+
+    - name: Install Rancher
+      command: helm install rancher rancher-latest/rancher --namespace {{ rancher_namespace }} --set hostname={{ rancher_hostname }} --set replicas={{ rancher_replicas }} --set ingress.tls.source={{ rancher_tls_source }}
