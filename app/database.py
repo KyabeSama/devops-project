@@ -70,6 +70,23 @@ class Database:
         for row in rows:
             print(row)
 
+    def get_movie_details(self, movie_name):
+        cursor = self.connection.cursor()
+        query = """
+        SELECT Movies.id, Movies.name, Movies.description, Movies.year,
+               GROUP_CONCAT(DISTINCT CONCAT(Actors.name, ' ', Actors.surname)) AS actors,
+               GROUP_CONCAT(DISTINCT Authors.name) AS authors
+        FROM Movies
+        LEFT JOIN Movie_Actors ON Movies.id = Movie_Actors.movie_id
+        LEFT JOIN Actors ON Movie_Actors.actor_id = Actors.id
+        LEFT JOIN Movies_Authors ON Movies.id = Movies_Authors.movie_id
+        LEFT JOIN Authors ON Movies_Authors.author_id = Authors.id
+        WHERE Movies.name = %s
+        GROUP BY Movies.id, Movies.name, Movies.description, Movies.year
+        """
+        cursor.execute(query, (movie_name,))
+        row = cursor.fetchone()
+        return row
 
     def close_connection(self):
         if self.connection.is_connected():
