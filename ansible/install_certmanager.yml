@@ -30,5 +30,5 @@
 
     - name: Install Cert-Manager
       ansible.builtin.command:
-        cmd: helm install cert-manager jetstack/cert-manager --namespace {{ cert_manager_namespace }} --version {{ cert_manager_version }}
+        cmd: helm upgrade --install cert-manager jetstack/cert-manager --namespace {{ cert_manager_namespace }} --version {{ cert_manager_version }}
         creates: /etc/kubernetes/manifests/cert-manager.yaml

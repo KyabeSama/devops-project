@@ -2,7 +2,7 @@
   hosts: localhost
   vars:
     rancher_namespace: "cattle-system"
-    rancher_hostname: "rancher.my.org"
+    rancher_hostname: "rancher.ccl.kyabe-sama.fr"
     rancher_replicas: 1
     rancher_tls_source: "letsEncrypt"
     add_repo_helm_repo_name: "rancher-latest"
@@ -26,4 +26,4 @@
         name: update_repo
 
     - name: Install Rancher
-      command: helm install rancher rancher-latest/rancher --namespace {{ rancher_namespace }} --set hostname={{ rancher_hostname }} --set replicas={{ rancher_replicas }} --set ingress.tls.source={{ rancher_tls_source }}
+      command: helm upgrade --install rancher rancher-latest/rancher --namespace {{ rancher_namespace }} --set hostname={{ rancher_hostname }} --set replicas={{ rancher_replicas }} --set ingress.ingressClassName=nginx
