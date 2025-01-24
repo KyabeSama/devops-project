@@ -127,19 +127,10 @@ jobs:
         run: kubectl get nodes
 
       - name: Run Cert-Manager playbook
-        env:
-            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: ansible-playbook ansible/install_certmanager.yml
 
       - name: Run NGINX Ingress playbook
-        env:
-            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: ansible-playbook ansible/install_nginx_ingress.yml
 
       - name: Run Rancher UI playbook
-        env:
-            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: ansible-playbook ansible/install_rancher_ui.yml
