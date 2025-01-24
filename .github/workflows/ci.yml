@@ -98,10 +98,10 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install Ansible
+      - name: Install Ansible & Kubernetes
         run: |
           python -m pip install --upgrade pip
-          pip install ansible
+          pip install ansible kubernetes
       
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v3
@@ -119,9 +119,6 @@ jobs:
         uses: azure/setup-helm@v3
         with:
           version: 'latest'
-
-      - name: Install Kubernetes pip package
-        run: pip install kubernetes
 
       - name: Update kubeconfig
         run: aws eks update-kubeconfig --name gros-devops-project-cluster --region us-east-1
