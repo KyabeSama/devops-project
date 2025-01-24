@@ -5,7 +5,8 @@
     rancher_hostname: "rancher.ccl.kyabe-sama.fr"
     rancher_replicas: 1
     rancher_tls_source: "letsEncrypt"
-    add_repo_helm_repo_name: "rancher-latest"
+    rancher_email: "gros@ccl-consulting.fr"
+    add_repo_helm_repo_name: "rancher-stable"
     add_repo_helm_repo_url: "https://releases.rancher.com/server-charts/latest"
   tasks:
     - name: Create cattle-system namespace
@@ -26,4 +27,4 @@
         name: update_repo
 
     - name: Install Rancher
-      command: helm upgrade --install rancher rancher-latest/rancher --namespace {{ rancher_namespace }} --set hostname={{ rancher_hostname }} --set replicas={{ rancher_replicas }} --set ingress.ingressClassName=nginx
+      command: helm upgrade --install rancher {{ add_repo_helm_repo_name }}/rancher --namespace {{ rancher_namespace }} --set hostname={{ rancher_hostname }} --set replicas={{ rancher_replicas }} --set ingress.ingressClassName=nginx --set ingress.tls.source=letsEncrypt  --set letsEncrypt.email={{ rancher_email }} --set letsEncrypt.ingress.class=nginx
