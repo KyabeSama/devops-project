@@ -120,6 +120,9 @@ jobs:
         with:
           version: 'latest'
 
+      - name: Install Kubernetes pip package
+        run: pip install kubernetes
+
       - name: Update kubeconfig
         run: aws eks update-kubeconfig --name gros-devops-project-cluster --region us-east-1
 
