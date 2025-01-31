@@ -1,0 +1,4 @@
+---
+- name: Update Helm repositories
+  ansible.builtin.command: helm repo update
+  changed_when: false

@@ -1,0 +1,26 @@
+- name: Install NGINX Ingress Controller
+  hosts: localhost
+  vars:
+    nginx_ingress_namespace: "ingress-nginx"
+    add_repo_helm_repo_name: "ingress-nginx"
+    add_repo_helm_repo_url: "https://kubernetes.github.io/ingress-nginx"
+  tasks:
+    - name: Create Ingress-NGINX namespace
+      ansible.builtin.include_role:
+        name: create_namespace
+      vars:
+        namespace_name: "{{ nginx_ingress_namespace }}"
+
+    - name: Add Ingress-NGINX Helm repository
+      ansible.builtin.include_role:
+        name: add_repo
+      vars:
+        helm_repo_name: "{{ add_repo_helm_repo_name }}"
+        helm_repo_url: "{{ add_repo_helm_repo_url }}"
+
+    - name: Update Helm repositories
+      ansible.builtin.include_role:
+        name: update_repo
+
+    - name: Install NGINX Ingress Controller
+      command: helm upgrade --install  ingress-nginx ingress-nginx/ingress-nginx   --namespace ingress-nginx  --set controller.service.type=LoadBalancer  --version 4.6.0  --create-namespace
