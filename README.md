@@ -15,20 +15,17 @@ The objective is to use Terraform, Ansible, AWS, Kubernetes and Github actions t
 * Deploy common platform services:
     Ingress controller (nginx)
     Monitoring stack (Prometheus/Grafana)
-    Logging solution (EFK/ELK stack)
     Service mesh (Istio)
 
-3. CI/CD Pipeline for Containerized Applications
+1. CI/CD Pipeline for Containerized Applications
 
 * Create GitHub Actions workflows to:
     Build and push Docker images to ECR
     Run container security scans
-    Deploy to different EKS namespaces based on branches
     Apply Kubernetes manifests
     Run integration tests
 
 * Implement GitOps practices using tools like ArgoCD or Flux
-
 
 ## Authors
 
