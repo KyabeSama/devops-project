@@ -10,7 +10,15 @@ The objective is to use Terraform, Ansible, AWS, Kubernetes and Github actions t
 * Configure node groups with auto-scaling capabilities
 * Implement AWS Load Balancer Controller
 
-1. CI/CD Pipeline for Containerized Applications
+2. Kubernetes Application Platform
+
+* Deploy common platform services:
+    Ingress controller (nginx)
+    Monitoring stack (Prometheus/Grafana)
+    Logging solution (EFK/ELK stack)
+    Service mesh (Istio)
+
+3. CI/CD Pipeline for Containerized Applications
 
 * Create GitHub Actions workflows to:
     Build and push Docker images to ECR
@@ -21,57 +29,6 @@ The objective is to use Terraform, Ansible, AWS, Kubernetes and Github actions t
 
 * Implement GitOps practices using tools like ArgoCD or Flux
 
-3. Kubernetes Application Platform
-
-* Deploy common platform services:
-    Ingress controller (nginx/traefik)
-    Monitoring stack (Prometheus/Grafana)
-    Logging solution (EFK/ELK stack)
-    Service mesh (Istio)
-
-* Implement horizontal pod autoscaling
-* Set up pod disruption budgets
-* Configure resource quotas and limits
-
-4. Hybrid Infrastructure Management
-
-* Use Ansible to configure worker nodes
-* Create playbooks for node maintenance
-* Implement cluster backup solutions
-* Set up external secrets management with AWS Secrets Manager
-* Configure AWS IAM roles for service accounts
-* Implement cross-account access patterns
-
-5. Microservices Application Stack
-
-* Deploy a sample microservices application using:
-    API Gateway/ALB Ingress Controller
-    EKS for container orchestration
-    RDS/Aurora for databases
-    ElastiCache for caching
-    SQS/SNS for messaging
-
-Implement service discovery
-Set up blue-green deployments
-
-6. Multi-Region Disaster Recovery
-
-* Create multi-region EKS clusters
-* Implement cross-region data replication
-* Set up Route 53 for global traffic management
-* Create automated backup and restore procedures
-* Implement cluster federation if needed
-* Design failover procedures
-
-7. Security and Compliance Infrastructure
-
-* Implement pod security policies
-* Set up network policies
-* Configure AWS WAF with ALB/API Gateway
-* Implement RBAC for Kubernetes
-* Set up audit logging
-* Configure security groups and NACLs
-* Implement container image scanning in CI/CD
 
 ## Authors
 
