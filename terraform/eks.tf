@@ -1,6 +1,7 @@
 resource "aws_eks_cluster" "devops-project" {
+  count    = local.env != "default" ? 1 : 0
   name     = "gros-devops-project-cluster"
-  role_arn = aws_iam_role.eks_cluster_role.arn
+  role_arn = aws_iam_role.eks_cluster_role[0].arn
 
   vpc_config {
     subnet_ids = concat(aws_subnet.public.*.id, aws_subnet.private.*.id)
@@ -15,9 +16,11 @@ resource "aws_eks_cluster" "devops-project" {
 
 
 resource "aws_eks_node_group" "devops-project-node-group" {
-  cluster_name    = aws_eks_cluster.devops-project.name
+  count = local.env != "default" ? 1 : 0
+
+  cluster_name    = aws_eks_cluster.devops-project[0].name
   node_group_name = "gros-devops-project-node-group"
-  node_role_arn   = aws_iam_role.eks_node_group_role.arn
+  node_role_arn   = aws_iam_role.eks_node_group_role[0].arn
   subnet_ids      = aws_subnet.private.*.id
 
   scaling_config {
@@ -35,9 +38,11 @@ resource "aws_eks_node_group" "devops-project-node-group" {
 
 
 resource "aws_security_group" "eks_cluster_sg" {
+  count = local.env != "default" ? 1 : 0
+
   name        = "eks_cluster_sg"
   description = "EKS Cluster security group"
-  vpc_id      = aws_vpc.main.id
+  vpc_id      = aws_vpc.main[0].id
 
   ingress {
     from_port   = 443

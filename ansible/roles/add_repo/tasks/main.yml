@@ -1,5 +1,6 @@
 ---
 - name: Add Helm repository
+  ignore_errors: true
   kubernetes.core.helm_repository:
     name: "{{ helm_repo_name }}"
     repo_url: "{{ helm_repo_url }}"
