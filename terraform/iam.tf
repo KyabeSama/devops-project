@@ -51,13 +51,42 @@ resource "aws_iam_policy" "eks_node_group_ec2_policy" {
           "ec2:DeleteVolume",
           "ec2:AttachVolume",
           "ec2:DetachVolume",
-          "ec2:DescribeVolumes"
+          "ec2:DescribeVolumes",
+          "ec2:DescribeInstances",
+          "ec2:DescribeInstanceStatus"
         ]
         Resource = "*"
       }
     ]
   })
 }
+
+resource "aws_iam_role" "ebs_csi_controller_role" {
+  count = local.env != "default" ? 1 : 0
+
+  name = "ebs_csi_controller_role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Principal = {
+          Federated = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:oidc-provider/oidc.eks.region-code.amazonaws.com/id/EXAMPLED539D4633E53DE1B71EXAMPLE"
+        }
+        Action = "sts:AssumeRoleWithWebIdentity"
+        Condition = {
+          StringEquals = {
+            "oidc.eks.region-code.amazonaws.com/id/EXAMPLED539D4633E53DE1B71EXAMPLE:aud" = "sts.amazonaws.com"
+            "oidc.eks.region-code.amazonaws.com/id/EXAMPLED539D4633E53DE1B71EXAMPLE:sub" = "system:serviceaccount:kube-system:ebs-csi-controller-sa"
+          }
+        }
+      }
+    ]
+  })
+}
+
+data "aws_caller_identity" "current" {}
 
 resource "aws_iam_role_policy_attachment" "eks_node_group_ec2_policy_attachment" {
   count = local.env != "default" ? 1 : 0
